@@ -1,7 +1,9 @@
 package br.edu.ifg.cadastroprodutos_android.Activity;
 
-import android.app.ListActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
@@ -13,37 +15,22 @@ import br.edu.ifg.cadastroprodutos_android.BancoDeDados.ProdutoDAOimpl;
 import br.edu.ifg.cadastroprodutos_android.Produto;
 import br.edu.ifg.cadastroprodutos_android.R;
 
-public class ListarActivity extends ListActivity {
+public class ListarActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listar);
+        ListView listaDeProdutos = (ListView) findViewById(R.id.lista);
 
         ProdutoDAOimpl dao = new ProdutoDAOimpl(this);
         try {
-            List<Produto> p = dao.listarTodos();
+            List<Produto> produtos = dao.listarTodos();
 
-            ArrayList<HashMap<String, String>> itens = new ArrayList<HashMap<String, String>>();
-            for (Produto m : p) {
-                HashMap<String, String> item = new HashMap<String, String>();
+            ArrayAdapter<Produto> adapter = new ArrayAdapter<Produto>(this,
+                    android.R.layout.simple_list_item_1, produtos);
 
-                item.put("Id", m.getId()+"");
-                item.put("Nome", m.getNome());
-                item.put("ValorUnitario", m.getValorUnitario() +"" );
-                item.put("Estoque", m.getEstoque() + "");
-
-                itens.add(item);
-            }
-
-            String[] from = new String[]{"Id", "Nome", "ValorUnitario", "Estoque"};
-
-
-            int[] to = new int[]{R.id.textId, R.id.textNome, R.id.textValorUnitario, R.id.textEstoque};
-            int resource = R.layout.activity_listar;
-
-            SimpleAdapter adapter = new SimpleAdapter(this, itens, resource, from, to);
-            setListAdapter(adapter);
+            listaDeProdutos.setAdapter(adapter);
         } catch (Exception e) {
             Toast.makeText(this, e.getMessage() + "Erro", Toast.LENGTH_LONG).show();
         }

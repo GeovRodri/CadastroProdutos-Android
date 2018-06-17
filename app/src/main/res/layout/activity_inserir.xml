@@ -3,16 +3,16 @@
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".Activity.InserirActivity">
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/textView14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Cadastro de Produto"
-        android:id="@+id/textView14"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:text="Produto"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <View
         android:id="@+id/firstDivider"
@@ -74,10 +74,13 @@
                         android:id="@+id/textValorUnitario" />
 
                     <EditText
+                        android:id="@+id/valorUnitario"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:numeric="decimal"
-                        android:id="@+id/valorUnitario" />
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentEnd="true"
+                        android:ems="10"
+                        android:inputType="numberDecimal" />
                 </TableRow>
 
                 <View
@@ -100,7 +103,8 @@
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:numeric="integer"
+                        android:ems="10"
+                        android:inputType="numberDecimal"
                         android:id="@+id/estoque" />
                 </TableRow>
 
@@ -112,7 +116,7 @@
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Salvar"
+                    android:text="Enviar"
                     android:id="@+id/button"
                     android:layout_gravity="right"
                     android:onClick="salvar" />

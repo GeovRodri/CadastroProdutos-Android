@@ -34,10 +34,16 @@ public class InserirActivity extends AppCompatActivity {
         produto = new Produto();
 
         produto.setNome(nome.getText().toString());
-        produto.setValorUnitario(Float.parseFloat(valorUnitario.getText().toString()));
-        produto.setEstoque(Integer.parseInt(estoque.getText().toString()));
 
-        Intent i = new Intent(this, ListarActivity.class);
+        if (valorUnitario.getText() != null) {
+            produto.setValorUnitario(Float.parseFloat(valorUnitario.getText().toString()));
+        }
+
+        if (estoque.getText() != null) {
+            produto.setEstoque(Integer.parseInt(estoque.getText().toString()));
+        }
+
+        Intent i = new Intent(this, MainActivity.class);
         i.putExtra(PRODUTO, produto);
 
         startActivity(i);
