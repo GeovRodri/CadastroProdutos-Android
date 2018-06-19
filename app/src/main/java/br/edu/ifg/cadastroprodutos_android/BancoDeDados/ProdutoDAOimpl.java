@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by geovany on 01/05/15.
+ * Created by geovany
  */
 public class ProdutoDAOimpl implements ProdutoDAO{
 
@@ -54,8 +54,6 @@ public class ProdutoDAOimpl implements ProdutoDAO{
     public void excluir(long id) throws Exception {
         SQLiteDatabase db = helper.getWritableDatabase();
         db.delete(DataBaseHelper.PRODUTO.TABLEDADOS, "_id=?", new String[]{DataBaseHelper.PRODUTO._ID});
-           
-
     }
 
     @Override
@@ -78,14 +76,12 @@ public class ProdutoDAOimpl implements ProdutoDAO{
         }
 
         res.close();
-
         return produtos;
     }
 
     @Override
     public Produto buscar(int id) throws Exception {
         SQLiteDatabase db = helper.getWritableDatabase();
-
 
         Cursor res = db.rawQuery(DataBaseHelper.PRODUTO.TABLEDADOS,
                 new String[]{DataBaseHelper.PRODUTO._ID, DataBaseHelper.PRODUTO.NOME, DataBaseHelper.PRODUTO.ESTOQUE,
@@ -108,12 +104,11 @@ public class ProdutoDAOimpl implements ProdutoDAO{
     public boolean alterar(Produto p) throws Exception {
         SQLiteDatabase db = helper.getWritableDatabase();
         ContentValues atributos = new ContentValues();
-        atributos.put("_ID",DataBaseHelper.PRODUTO._ID);
-        atributos.put("NOME",DataBaseHelper.PRODUTO.NOME);
-        atributos.put("VALORUNITARIO",DataBaseHelper.PRODUTO.VALORUNITARIO);
-        atributos.put("ESTOQUE",DataBaseHelper.PRODUTO.ESTOQUE);
+        atributos.put("NOME", p.getNome());
+        atributos.put("VALORUNITARIO", p.getValorUnitario());
+        atributos.put("ESTOQUE", p.getEstoque());
 
-        db.update(DataBaseHelper.PRODUTO.TABLEDADOS, atributos, "_id = ?", new String[]{DataBaseHelper.PRODUTO._ID});
+        db.update(DataBaseHelper.PRODUTO.TABLEDADOS, atributos, "_id = ?", new String[]{p.getId() + ""});
         return true;
     }
 }

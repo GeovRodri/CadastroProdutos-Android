@@ -4,7 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import java.util.List;
+import java.util.Objects;
+
+import br.edu.ifg.cadastroprodutos_android.BancoDeDados.ProdutoDAOimpl;
 import br.edu.ifg.cadastroprodutos_android.Produto;
 import br.edu.ifg.cadastroprodutos_android.R;
 
@@ -12,6 +19,7 @@ import br.edu.ifg.cadastroprodutos_android.R;
 public class InserirActivity extends AppCompatActivity {
 
     public static final String PRODUTO = "produto";
+    private Intent i;
 
     private EditText nome;
     private EditText valorUnitario;
@@ -25,28 +33,49 @@ public class InserirActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inserir);
 
+        i = getIntent();
+        produto = (Produto) i.getSerializableExtra(InserirActivity.PRODUTO);
+
         nome = (EditText) findViewById(R.id.nome);
         valorUnitario = (EditText) findViewById(R.id.valorUnitario);
         estoque = (EditText) findViewById(R.id.estoque);
+
+        if (produto != null) {
+            nome.setText(produto.getNome());
+            valorUnitario.setText(produto.getValorUnitario() + "");
+            estoque.setText(produto.getEstoque() + "");
+        }
     }
 
     public void salvar(View v){
-        produto = new Produto();
-
-        produto.setNome(nome.getText().toString());
+        Produto novoProduto = new Produto();
+        novoProduto.setNome(nome.getText().toString());
 
         if (valorUnitario.getText() != null) {
-            produto.setValorUnitario(Float.parseFloat(valorUnitario.getText().toString()));
+            novoProduto.setValorUnitario(Float.parseFloat(valorUnitario.getText().toString()));
+        } else {
+            novoProduto.setValorUnitario(0);
         }
 
         if (estoque.getText() != null) {
-            produto.setEstoque(Integer.parseInt(estoque.getText().toString()));
+            novoProduto.setEstoque(Integer.parseInt(estoque.getText().toString()));
+        } else {
+            novoProduto.setEstoque(0);
+        }
+
+        ProdutoDAOimpl dao = new ProdutoDAOimpl(this);
+        try {
+            if (produto == null) {
+                dao.inserir(novoProduto);
+            } else {
+                novoProduto.setId(produto.getId());
+                dao.alterar(novoProduto);
+            }
+        } catch (Exception e) {
+            Toast.makeText(this, "Erro ao inserir o produto!", Toast.LENGTH_LONG).show();
         }
 
         Intent i = new Intent(this, MainActivity.class);
-        i.putExtra(PRODUTO, produto);
-
         startActivity(i);
-
     }
 }

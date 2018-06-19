@@ -3,7 +3,7 @@ package br.edu.ifg.cadastroprodutos_android;
 import java.io.Serializable;
 
 /**
- * Created by geovany on 22/04/15.
+ * Created by geovany.
  */
 public class Produto implements Serializable{
 
@@ -14,6 +14,11 @@ public class Produto implements Serializable{
 
     public Produto() {
 
+    }
+
+    @Override
+    public String toString() {
+        return nome;
     }
 
     public long getId() {

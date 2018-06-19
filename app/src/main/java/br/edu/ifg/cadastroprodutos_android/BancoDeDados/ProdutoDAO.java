@@ -4,7 +4,7 @@ import br.edu.ifg.cadastroprodutos_android.Produto;
 import java.util.List;
 
 /**
- * Created by aluno on 21/05/2015.
+ * Created by aluno
  */
 public interface ProdutoDAO {
 
