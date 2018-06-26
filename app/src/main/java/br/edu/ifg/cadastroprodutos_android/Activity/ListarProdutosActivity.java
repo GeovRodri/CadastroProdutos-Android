@@ -15,16 +15,16 @@ import br.edu.ifg.cadastroprodutos_android.BancoDeDados.ProdutoDAOimpl;
 import br.edu.ifg.cadastroprodutos_android.Produto;
 import br.edu.ifg.cadastroprodutos_android.R;
 
-import static br.edu.ifg.cadastroprodutos_android.Activity.InserirActivity.PRODUTO;
+import static br.edu.ifg.cadastroprodutos_android.Activity.ProdutoActivity.PRODUTO;
 
-public class ListarActivity extends ListActivity {
+public class ListarProdutosActivity extends ListActivity {
 
     private List<Produto> produtos = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_listar);
+        setContentView(R.layout.activity_listar_produtos);
 
         ProdutoDAOimpl dao = new ProdutoDAOimpl(this);
         try {
@@ -42,7 +42,7 @@ public class ListarActivity extends ListActivity {
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
         Produto produto = produtos.get(position);
-        Intent i = new Intent(this, InserirActivity.class);
+        Intent i = new Intent(this, ProdutoActivity.class);
         i.putExtra(PRODUTO, produto);
         startActivity(i);
     }

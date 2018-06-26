@@ -16,12 +16,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void inserir(View v){
-        Intent i = new Intent(this, InserirActivity.class);
+        Intent i = new Intent(this, ProdutoActivity.class);
         startActivity(i);
     }
 
     public void listar(View v){
-        Intent i = new Intent(this, ListarActivity.class);
+        Intent i = new Intent(this, ListarProdutosActivity.class);
         startActivity(i);
     }
 }

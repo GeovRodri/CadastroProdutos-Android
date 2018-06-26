@@ -4,19 +4,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import java.util.List;
-import java.util.Objects;
 
 import br.edu.ifg.cadastroprodutos_android.BancoDeDados.ProdutoDAOimpl;
 import br.edu.ifg.cadastroprodutos_android.Produto;
 import br.edu.ifg.cadastroprodutos_android.R;
 
 
-public class InserirActivity extends AppCompatActivity {
+public class ProdutoActivity extends AppCompatActivity {
 
     public static final String PRODUTO = "produto";
     private Intent i;
@@ -31,10 +27,10 @@ public class InserirActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_inserir);
+        setContentView(R.layout.activity_produto);
 
         i = getIntent();
-        produto = (Produto) i.getSerializableExtra(InserirActivity.PRODUTO);
+        produto = (Produto) i.getSerializableExtra(ProdutoActivity.PRODUTO);
 
         nome = (EditText) findViewById(R.id.nome);
         valorUnitario = (EditText) findViewById(R.id.valorUnitario);
