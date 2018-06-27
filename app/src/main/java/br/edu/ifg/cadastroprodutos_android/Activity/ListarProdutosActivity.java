@@ -26,7 +26,7 @@ public class ListarProdutosActivity extends ListActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listar_produtos);
 
-        ProdutoDAOimpl dao = new ProdutoDAOimpl(this);
+        ProdutoDAOimpl dao = new ProdutoDAOimpl();
         try {
             produtos = dao.listarTodos();
 

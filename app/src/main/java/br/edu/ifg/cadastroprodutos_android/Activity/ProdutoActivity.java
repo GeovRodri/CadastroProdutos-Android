@@ -59,7 +59,7 @@ public class ProdutoActivity extends AppCompatActivity {
             novoProduto.setEstoque(0);
         }
 
-        ProdutoDAOimpl dao = new ProdutoDAOimpl(this);
+        ProdutoDAOimpl dao = new ProdutoDAOimpl();
         try {
             if (produto == null) {
                 dao.inserir(novoProduto);

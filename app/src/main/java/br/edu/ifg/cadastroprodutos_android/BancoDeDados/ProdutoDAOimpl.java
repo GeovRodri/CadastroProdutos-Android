@@ -15,11 +15,7 @@ import java.util.List;
  */
 public class ProdutoDAOimpl extends GenericDaoSqlite implements ProdutoDAO{
 
-    private Context context;
-
-    public ProdutoDAOimpl(Context context){
-        this.context = context;
-    }
+    public ProdutoDAOimpl(){   }
 
     @Override
     public Produto inserir(Produto p) throws Exception {
