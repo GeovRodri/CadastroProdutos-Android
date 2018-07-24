@@ -1,5 +1,7 @@
 package br.edu.ifg.cadastroprodutos_android;
 
+import com.google.firebase.database.Exclude;
+
 import java.io.Serializable;
 
 /**
@@ -7,7 +9,12 @@ import java.io.Serializable;
  */
 public class Produto implements Serializable{
 
+    @Exclude
+    private String key;
+
+    @Exclude
     private long id;
+
     private String nome;
     private float valorUnitario;
     private int estoque;
@@ -16,11 +23,27 @@ public class Produto implements Serializable{
 
     }
 
+    public Produto(String key, String nome, float valorUnitario, int estoque) {
+        this.key = key;
+        this.nome = nome;
+        this.valorUnitario = valorUnitario;
+        this.estoque = estoque;
+    }
+
     @Override
     public String toString() {
         return nome;
     }
 
+    @Exclude
+    public String getKey() {
+        return key;
+    }
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    @Exclude
     public long getId() {
         return id;
     }

@@ -113,13 +113,27 @@
                     android:layout_height="10dp"
                     android:layout_width="fill_parent"/>
 
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Salvar"
-                    android:id="@+id/button"
-                    android:layout_gravity="right"
-                    android:onClick="salvar" />
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <Button
+                        android:id="@+id/button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:onClick="salvar"
+                        android:text="Salvar" />
+
+                    <Button
+                        android:id="@+id/buttonExcluir"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:onClick="excluir"
+                        android:text="Excluir"
+                        android:visibility="gone" />
+                </TableRow>
 
             </LinearLayout>
 
